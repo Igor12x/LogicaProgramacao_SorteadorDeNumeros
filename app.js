@@ -56,9 +56,11 @@ function alterarStatusBotao() {
 }
 
 function validarCampo(quantidade, min, max) {
-    return verificarMinMax(min, max) && verificarQuantidadeDeNumeros(quantidade, min, max);
-}
+        return ( verificarMinMax(min, max) &&
+        verificarQuantidadeDeNumeros(quantidade, min, max) &&
+        verificarSeNumerosSaoValidos(quantidade, min, max));
 
+}
 function verificarMinMax(min, max) {
     if (min > max) {
         alert('Você não pode ter um número mínimo maior que o número máximo');
@@ -90,4 +92,13 @@ function gerarNumerosSorteados(quantidade, min, max) {
 
 function mostrarResultado(numeros) {
     resultadoCampo.innerHTML = `<label class="texto__paragrafo">${MESSAGEM_NUMEROS_SORTEADOS} ${numeros.join(', ')}</label>`;
+}
+
+function verificarSeNumerosSaoValidos(quantidade, min, max) {
+    if(!isNaN(quantidade) && quantidade > 0 && !isNaN(min) && min >= 0 && !isNaN(max) && max > 0) {
+        return true;
+        } else {
+            alert('Campos com números inválidos');
+            return false;
+        };
 }
